@@ -24,10 +24,4 @@ def process_max_bet(table, starting_max, rounds, widths):
 
         table.append(f"| {max_bet_str} | {round_str} | {bet_str} | {profit_str} | {running_loss_str} | {prob_no_black_str} |\n")
 
-    table.append("+")  # Start the bottom line of the table rows
-
-    # Generate the bottom line of the table rows
-    for width in widths:
-        table.append("-" * (width + 2) + "+")  # "+2" accounts for padding spaces around the text
-
     table.append("\n")
