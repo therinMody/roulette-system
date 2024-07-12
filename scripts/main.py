@@ -7,7 +7,7 @@ def main():
     directory_path = './lib'
         
     for i in range(6, 17):
-        file_path = directory_path+"/"+str(i)+"_rounds"
+        file_path = directory_path+"/0"+str(i)+"_rounds"
         
         if not os.path.exists(file_path):
             os.makedirs(file_path)
