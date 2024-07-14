@@ -1,6 +1,6 @@
 # process_max_bet.py
 
-def process_max_bet(table, starting_max, rounds, widths):
+def process_max_bet(table, starting_max, rounds, widths, roulette_option):
     previous_bet = 0
     running_loss = 0
     increment_bet = starting_max / (2 ** (rounds - 1))
@@ -12,8 +12,11 @@ def process_max_bet(table, starting_max, rounds, widths):
         previous_bet = increment_bet
         profit = (increment_bet * 2) - running_loss - increment_bet
         running_loss = running_loss + previous_bet
-
-        prob_no_black = (1 - 18/38) ** i * 100  # Calculate probability of no black in percentage
+        
+        if (roulette_option == "euro"):
+            prob_no_black = (1 - 19/37) ** i * 100
+        else:
+            prob_no_black = (1 - 18/38) ** i * 100
 
         max_bet_str = f"{starting_max if i == 1 else '' :<{widths[0]}}"
         round_str = f"{i:<{widths[1]}}"

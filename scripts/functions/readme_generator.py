@@ -8,6 +8,7 @@ def readme_generator(rounds, destination):
     max_bet_start = 500
     max_bet_limit = 10000
     increment = 500
+    roulette_option = "euro"
 
     while max_bet_start <= max_bet_limit:
         output_table.append(f"Allowed Max Bet: {max_bet_start}\n")

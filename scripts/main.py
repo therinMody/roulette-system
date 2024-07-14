@@ -18,7 +18,9 @@ def main():
         
         readme_generator(i, destination)
         
-    print(f"Script completed successfully! Author - therinMody")
+    print(f"Readme's generated successfully! Author - therinMody")
+    
+    
     
     
 main()
