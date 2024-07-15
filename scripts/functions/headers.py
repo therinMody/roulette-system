@@ -1,5 +1,5 @@
 def headers(table, widths):
-    header_titles = ["Max Bet", "Round", "Bet", "Profit - Running Loss", "Running Loss", "Prob. No Black (%)"]
+    header_titles = ["Max Bet", "Round", "Bet", "Profit - Running Loss", "Running Loss", "Euro Prob. No Black (%)", "Amer. Prob. No Black (%)"]
     
     # Create the header row
     header_row = '|'
