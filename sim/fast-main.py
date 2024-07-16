@@ -27,6 +27,8 @@ Probability of losing once before reaching Potential Running Loss: Euro: 73%, Am
 Games Necessary to win to cover a loss: 1023
 """
 
+# Needs a math check
+
 def main():
     # Game scenarios
     rounds = 10
