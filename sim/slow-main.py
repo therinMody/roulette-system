@@ -1,6 +1,5 @@
-import random
-
-# Run this script to run a simulation to confirm the debunking of the doubling down theory
+from functions.play import play_for_profit
+import time
 
 """
 Allowed Max Bet: 500
@@ -20,41 +19,44 @@ Allowed Max Bet: 500
 Probability of losing once before reaching Potential Running Loss: Euro: 73%, American: 81%
 Games Necessary to win to cover a loss: 1023
 """
-
-# Game scenarios
-bet_amount = 1
-max_bet = 500
-rounds = 10
-games_won_necessary = 1023
-roulette_type = "euro"
-initial_bank_roll = 1000
-
-def play_round(roulette_type):
-    """
-    Simulates a single round of betting on black in roulette.
+ 
+def main():
+    # Game scenarios
+    rounds = 10
+    games_won_necessary_for_profit = 1023
+    roulette_type = "euro"
     
-    Parameters:
-    - roulette_type: A string that specifies the type of roulette ("euro" for European, "amer" for American).
+    # How many times would you like to try to turn a profit?
+    trys = 1000000
     
-    Returns:
-    - 1 if the bet wins (lands on black)
-    - 0 if the bet loses (lands on red or green)
-    """
-    if roulette_type == "amer":
-        # American roulette: 18 black, 18 red, 2 green
-        outcome = random.randint(1, 38)  # 1-18: black, 19-36: red, 37-38: green
-        if outcome <= 18:
-            return 1
+    print(f"-------------------------- Running Simulation of {trys} attempts --------------------------")
+    wins = 0
+    losses = 0
+
+    for i in range(1, trys + 1):
+        result = play_for_profit(roulette_type, rounds, games_won_necessary_for_profit)
+        if result == 1:
+            print(f"Try {i:<3} : Congrats, you won {games_won_necessary_for_profit} in a row to turn a profit")
+            wins += 1
         else:
-            return 0
-    elif roulette_type == "euro":
-        # European roulette: 18 black, 18 red, 1 green
-        outcome = random.randint(1, 37)  # 1-18: black, 19-36: red, 37: green
-        if outcome <= 18:
-            return 1
-        else:
-            return 0
+            print(f"Try {i:<3} : You lost before turning your investment into capital")
+            losses += 1
+
+    print(f"------------------------------------- End Simulation ----------------------------------")
+    
+    if wins > losses:
+        # Likely never going to see this print statement
+        print(f"Overall: You won {(wins/trys) * 100}% of the games")
     else:
-        raise ValueError("Invalid roulette type. Use 'euro' for European or 'amer' for American.")
+        print(f"Overall: You lost {(losses/trys) * 100}% of the games")
+    
+if __name__ == '__main__':
+    # Start the timer
+    start_time = time.time()
+    main()
+    # End the timer
+    end_time = time.time()
 
-### WIP ###
+    # Calculate the elapsed time
+    elapsed_time = end_time - start_time
+    print(f"Time taken to run the simulation: {elapsed_time:.2f} seconds")
